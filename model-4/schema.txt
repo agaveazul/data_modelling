@@ -1,0 +1,58 @@
+Step 1: Set of models and their attributes
+Step 2: Relationships that exist between models (1-1, 1-many, many-many)
+Step 3: Translate into a database schema  (what tables, migrations, associations are needed)
+Step 4: Generate the appropriate models and migrations
+Step 5: Add associations to the models to inform them about the relationships
+
+An Eventbrite-inspired app that allows hosts to create events and guests to RSVP to them
+
+
+1.
+
+Hosts
+-name
+
+Events
+-name
+-date
+-time
+-duration
+-capacity
+
+Guests
+-name
+
+2.
+
+hosts -> events
+one -> many
+
+guests <-> events
+many <-> many
+
+hosts <-> guests
+many <-> many
+
+3.
+
+3 tables: Host, Event, Guest
+
+4.
+
+rails g model Host name:string
+rails g model Event name:string date:date time:time duration:integer capacity:integer host_id:integer guest_id:integer
+rails g model Guest name:string
+
+5.
+
+Host
+has_many :events
+has_many :guests, through: :events
+
+Guests
+has_many :events
+has_many :hosts, through :events
+
+Events
+belongs_to :event
+belongs_to :host

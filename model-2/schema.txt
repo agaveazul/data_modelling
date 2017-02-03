@@ -1,0 +1,38 @@
+Step 1: Set of models and their attributes
+Step 2: Relationships that exist between models (1-1, 1-many, many-many)
+Step 3: Translate into a database schema  (what tables, migrations, associations are needed)
+Step 4: Generate the appropriate models and migrations
+Step 5: Add associations to the models to inform them about the relationships
+
+Step 1: Model Attributes
+Ingredients
+-name
+
+Recipes
+-name
+
+Recipes_Ingredients
+
+Step 2: Relationship
+
+many-many
+
+Step 3:
+
+Three tables: ingredients, recipes, recipes_ingredients
+
+Step 4:
+
+rails g model Ingredient name:string
+rails g model Recipe name:string
+rails g migration CreateIngredientRecipe recipe_id:integer ingredient_id: integer
+
+#no need for a model for the join table as all information is stored in the other tables#
+
+Step 5:
+
+ingredient.rb
+has_and_belongs_to_many
+
+recipe.rb
+has_and_belongs_to_many

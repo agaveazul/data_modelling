@@ -1,0 +1,51 @@
+Step 1: Set of models and their attributes
+Step 2: Relationships that exist between models (1-1, 1-many, many-many)
+Step 3: Translate into a database schema  (what tables, migrations, associations are needed)
+Step 4: Generate the appropriate models and migrations
+Step 5: Add associations to the models to inform them about the relationships
+
+
+Step 1:
+
+Models:
+
+Customer
+-email
+-mailing address
+-name
+
+Order
+-order number
+-date
+
+
+Step 2:
+-1-many
+cust -> orders
+
+Step 3:
+
+Customer:
+-id
+-email
+-mailing address
+-name
+
+Order:
+-id
+-order_number
+-date
+-customer_id
+
+Step 4:
+
+rails generate model Customer email:string mailing_address:string name:string
+rails generate model Order  order_number:integer date:date customer_id: integer
+
+Step 5:
+
+customer.rb
+has_many :orders
+
+orders.rb
+belongs_to :customer
